@@ -1,5 +1,5 @@
 .App {
-  background-color: #f0f0f0;
+  background-color: #e4e4e4;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,6 +20,7 @@
   grid-column-end: 3;
   outline: solid 1px rgb(0, 0, 0);
   padding: 2%;
+  margin: 2% 0;
 }
 
 .Card > span > button {
