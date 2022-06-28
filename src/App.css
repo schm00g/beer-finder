@@ -15,23 +15,20 @@
 }
 
 .Card {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 3;
   outline: solid 1px rgb(0, 0, 0);
-  padding: 2% 5%;
-}
-
-.Description {
-  max-width: 80%;
-  padding-left: 5%;
+  padding: 2%;
 }
 
 .Card > span > button {
-  width: 8rem;
-  height: 4rem;
-  padding: 10%;
-  margin-top: 10%;
+  float: right;
+  margin-left: 1%;
+}
+
+.Description {
+  height: 8rem;
 }
 
 .App-link {

@@ -56,10 +56,10 @@ const BeerDetail = () => {
           </span>
           <p className="Description">{displayedBeer.description}</p>
           <span>
-            <button onClick={() => selectRandomBeer()}>Another Beer</button>
             <button onClick={() => selectRandomNonAlcoholicBeer()}>
               Random non alcoholic beer
             </button>
+            <button onClick={() => selectRandomBeer()}>Another Beer</button>
           </span>
         </div>
       )}
