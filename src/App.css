@@ -32,6 +32,11 @@
   height: 8rem;
 }
 
+.Validation {
+  color: red;
+  font-size: 12px;
+}
+
 .App-link {
   color: #61dafb;
 }
