@@ -3,6 +3,7 @@ import React from "react";
 function SearchResults({ filteredBeers }) {
   return (
     <>
+      {filteredBeers.length > 0 && <h2>Search Results</h2>}
       {filteredBeers.map(
         ({ id, name, description, image_url, first_brewed }) => (
           <div key={id} className="Card">

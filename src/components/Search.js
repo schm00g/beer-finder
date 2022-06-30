@@ -51,7 +51,7 @@ function SearchForm({ beers }) {
     <div>
       <form onSubmit={(e) => formSubmit(e)}>
         <label>
-          <h3>Search</h3>
+          <h2>Search</h2>
           <input
             id="search"
             type="text"

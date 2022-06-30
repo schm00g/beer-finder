@@ -37,8 +37,17 @@
   font-size: 12px;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  background-color: #5550c8;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 1%;
+  margin: 1%;
+}
+
+button:hover {
+  background-color: #413da8;
 }
 
 @keyframes App-logo-spin {
