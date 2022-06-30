@@ -13,7 +13,9 @@ function SearchResults({ filteredBeers }) {
               <img src={image_url} width="50" height="150" />
             </span>
             <p>{description}</p>
-            <p>First brewed: {first_brewed}</p>
+            <p>
+              <i>First brewed: {first_brewed}</i>
+            </p>
           </div>
         )
       )}

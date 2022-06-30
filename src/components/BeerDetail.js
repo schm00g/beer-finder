@@ -2,20 +2,19 @@ import React, { useEffect, useState } from "react";
 import {
   getAllBeers,
   getAllNonAlcoholicBeers,
-  getAllBeersBrewedBeforeDate,
+  getRandomBeer,
 } from "../services/http/index";
-import SearchResults from "./SearchResults";
+import SearchForm from "./Search";
 
-// TODO: Only beers with both a label and a description should be displayed.
+// TODO: Only beers with both a label
+// <image_url === null>
+//  and a description should be displayed.
+// <description === null>
 
 const BeerDetail = () => {
   const [beers, setBeers] = useState([]);
   const [displayedBeer, setDisplayedBeer] = useState({});
-  const [filteredBeers, setFilteredBeers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchType, setSearchType] = useState("name");
   const [loading, setLoading] = useState(true);
-  const [inputValid, setInputValid] = useState(true);
 
   useEffect(() => {
     getAllBeerData();
@@ -27,33 +26,18 @@ const BeerDetail = () => {
     }
   }, [beers]);
 
-  const selectRandomBeer = () => {
-    setDisplayedBeer(beers[Math.floor(Math.random() * beers.length)]);
-  };
-
-  const handleChange = (event) => {
-    setSearchType(event.target.value);
-  };
-
-  const searchBeers = (query) => {
-    setFilteredBeers(
-      beers.filter((beer) =>
-        beer.name.toLowerCase().includes(query.toLowerCase())
-      )
-    );
-  };
-
-  const validateFieldInput = (input) => {
-    setInputValid(!input.match(/[^A-Za-z0-9-\s]/));
-  };
-
-  async function searchBeersBrewedBeforeDate(date) {
-    // TODO: do regex here?
+  async function selectRandomBeer() {
     try {
-      const { data } = await getAllBeersBrewedBeforeDate(date);
-      setFilteredBeers(data);
+      const { data } = await getRandomBeer();
+      // TODO: index 0 avoidable and recursive call here?
+      if (data[0].image_url === null || data[0].description === null) {
+        selectRandomBeer();
+      }
+      setDisplayedBeer(data[0]);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -100,66 +84,14 @@ const BeerDetail = () => {
           </span>
         </div>
       )}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          // TODO: switch here or in function?
-          switch (searchType) {
-            case "name":
-              searchBeers(searchQuery);
-              break;
-            case "brewed_before":
-              searchBeersBrewedBeforeDate(searchQuery);
-              break;
-          }
-        }}
-      >
-        <label>
-          <h3>Search</h3>
-          <input
-            id="search"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              validateFieldInput(e.target.value);
-            }}
-            placeholder="search"
-          />
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="name"
-            name="search_type"
-            checked={searchType === "name"}
-            onChange={handleChange}
-          />
-          by name
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="brewed_before"
-            name="search_type"
-            checked={searchType === "brewed_before"}
-            onChange={handleChange}
-          />
-          brewed before (MM-YYYY)
-        </label>
-        <button type="submit">Search</button>
-      </form>
-      {!inputValid && (
-        <div className="Validation">
-          you may only use letters, numbers, hyphens and spaces
-        </div>
-      )}
+      <SearchForm beers={beers} />
       {/* {filteredBeers.length === 0 && <div>No items</div>} */}
-      <SearchResults filteredBeers={filteredBeers} />
     </div>
   );
 };
 
-// https://www.pluralsight.com/guides/optimizing-data-fetching-in-react
+// TODO: https://www.pluralsight.com/guides/optimizing-data-fetching-in-react
+
+// TODO: https://www.everydayreact.com/articles/solid-principles-in-react
 
 export default BeerDetail;
