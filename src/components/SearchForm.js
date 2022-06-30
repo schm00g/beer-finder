@@ -86,7 +86,7 @@ function SearchForm({ beers }) {
       </form>
       {!inputValid && (
         <div className="Validation">
-          you may only use letters, numbers, hyphens and spaces
+          only letters, numbers, hyphens and spaces are valid
         </div>
       )}
       <SearchResults filteredBeers={filteredBeers} />

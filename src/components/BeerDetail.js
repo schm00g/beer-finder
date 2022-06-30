@@ -4,7 +4,7 @@ import {
   getAllNonAlcoholicBeers,
   getRandomBeer,
 } from "../services/http/index";
-import SearchForm from "./Search";
+import SearchForm from "./SearchForm";
 
 // TODO: Only beers with both a label
 // <image_url === null>
