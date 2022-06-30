@@ -30,7 +30,6 @@ function SearchForm({ beers }) {
   };
 
   async function searchBeersBrewedBeforeDate(date) {
-    // TODO: do regex here?
     try {
       const { data } = await getAllBeersBrewedBeforeDate(date);
       setFilteredBeers(data);
