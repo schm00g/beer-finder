@@ -1,6 +1,6 @@
 # Beer Finder
 
-Interact with PunkAPI
+Interact with PunkAPI. I am using Node `v16.14.2`.
 
 ## Scripts
 
@@ -14,6 +14,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### `npm run test`
 
 Runs the jest test suites.
+
+### `npm run cypress:open`
+
+Open the cypress app to view end-to-end tests.
 
 ### `npm run build`
 
