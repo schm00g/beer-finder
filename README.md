@@ -24,3 +24,4 @@ Builds the app for production to the `build` folder.
 rate limiting
 Only beers with both a label and a description should be displayed.
 best to grab all beers from API and use localStorage?
+smaller img on search cards

@@ -1,9 +1,12 @@
 import React from "react";
 
-function SearchResults({ filteredBeers }) {
+function SearchResults({ filteredBeers, searchQuery }) {
   return (
     <>
       {filteredBeers.length > 0 && <h2>Search Results</h2>}
+      {searchQuery && filteredBeers.length === 0 && (
+        <p>No search results for {`"${searchQuery}"`}</p>
+      )}
       {filteredBeers.map(
         ({ id, name, description, image_url, first_brewed }) => (
           <div key={id} className="Card">
@@ -13,7 +16,7 @@ function SearchResults({ filteredBeers }) {
               </p>
               <img src={image_url} width="50" height="150" />
             </span>
-            <p>{description}</p>
+            <p className="truncate">{description}</p>
             <p>
               <i>First brewed: {first_brewed}</i>
             </p>

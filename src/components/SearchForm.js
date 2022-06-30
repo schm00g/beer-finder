@@ -48,7 +48,7 @@ function SearchForm({ beers }) {
 
   return (
     <div>
-      <form onSubmit={(e) => formSubmit(e)}>
+      <form className="Search" onSubmit={(e) => formSubmit(e)}>
         <label>
           <h2>Search</h2>
           <input
@@ -89,7 +89,7 @@ function SearchForm({ beers }) {
           only letters, numbers, hyphens and spaces are valid
         </div>
       )}
-      <SearchResults filteredBeers={filteredBeers} />
+      <SearchResults filteredBeers={filteredBeers} searchQuery={searchQuery} />
     </div>
   );
 }

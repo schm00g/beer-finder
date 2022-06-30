@@ -38,6 +38,19 @@
   font-size: 12px;
 }
 
+.Search > label {
+  margin-right: 1%;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
 button {
   background-color: #5550c8;
   color: white;
