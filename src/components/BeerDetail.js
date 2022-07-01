@@ -7,18 +7,24 @@ import {
 import SearchForm from "./SearchForm";
 
 const BeerDetail = () => {
-  const [beers, setBeers] = useState([]);
+  const [beers, setBeers] = useState(
+    JSON.parse(localStorage.getItem("beers")) || []
+  );
   const [displayedBeer, setDisplayedBeer] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllBeerData();
+    if (beers.length === 0) {
+      getAllBeerData();
+    }
   }, []);
 
   useEffect(() => {
-    if (!loading && beers) {
-      selectRandomBeer();
-    }
+    selectRandomBeer();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("beers", JSON.stringify(beers));
   }, [beers]);
 
   async function selectRandomBeer() {
