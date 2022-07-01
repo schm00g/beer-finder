@@ -11,13 +11,13 @@ From the project root directory, run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm run test`
-
-Runs the jest test suites.
-
 ### `npm run cypress:open`
 
 Open the cypress app to view end-to-end tests.
+
+### `npm run test`
+
+Runs the jest test suites.
 
 ### `npm run build`
 
