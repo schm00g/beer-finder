@@ -89,7 +89,7 @@ function SearchForm({ beers }) {
           only letters, numbers, hyphens and spaces are valid
         </div>
       )}
-      <SearchResults filteredBeers={filteredBeers} searchQuery={searchQuery} />
+      <SearchResults filteredBeers={filteredBeers} />
     </div>
   );
 }
