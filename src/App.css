@@ -1,7 +1,6 @@
 .App {
   min-height: 100vh;
   padding-top: 10%;
-  justify-content: center;
   font-size: calc(10px + 0.5vmin);
   color: rgb(0, 0, 0);
 }
@@ -45,12 +44,13 @@
 }
 
 .Truncate {
+  margin-top: 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
+  max-height: 3.8rem;
   overflow: hidden;
-  margin-top: 0;
-  padding-right: 3%;
+  padding-right: 2%;
 }
 
 button {
