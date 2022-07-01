@@ -4,24 +4,14 @@ function SearchResults({ filteredBeers }) {
   return (
     <div>
       {filteredBeers.length > 0 && <h2>Search Results</h2>}
-      {!filteredBeers.length ? (
-        <div>No search results found</div>
-      ) : (
-        filteredBeers.map(
-          ({ id, name, description, image_url, first_brewed }) => (
-            <div key={id} className="Card">
-              <span>
-                <p>
-                  <b>{name}</b>
-                </p>
-                <img src={image_url} width="50" height="150" />
-              </span>
-              <p className="truncate">{description}</p>
-              <p>
-                <i>First brewed: {first_brewed}</i>
-              </p>
-            </div>
-          )
+      {filteredBeers.map(
+        ({ id, name, description, image_url, first_brewed }) => (
+          <div key={id} className="Card">
+            <h4 className="Title">{name}</h4>
+            <img className="Image" src={image_url} width="30" height="100" />
+            <p className="Truncate">{description}</p>
+            <i>First brewed: {first_brewed}</i>
+          </div>
         )
       )}
     </div>

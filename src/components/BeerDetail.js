@@ -6,11 +6,6 @@ import {
 } from "../services/http/index";
 import SearchForm from "./SearchForm";
 
-// TODO: Only beers with both a label
-// <image_url === null>
-//  and a description should be displayed.
-// <description === null>
-
 const BeerDetail = () => {
   const [beers, setBeers] = useState([]);
   const [displayedBeer, setDisplayedBeer] = useState({});
@@ -69,23 +64,23 @@ const BeerDetail = () => {
     <div>
       {!loading && beers.length > 0 && (
         <div className="Card">
+          <h4 className="Title">{displayedBeer.name}</h4>
+          <img
+            className="Image"
+            src={displayedBeer.image_url}
+            width="50"
+            height="150"
+          ></img>
+          <span className="Description">{displayedBeer.description}</span>
           <span>
-            <p>
-              <b>{displayedBeer.name}</b>
-            </p>
-            <img src={displayedBeer.image_url} width="50" height="150"></img>
-          </span>
-          <p className="Description">{displayedBeer.description}</p>
-          <span>
+            <button onClick={() => selectRandomBeer()}>Another Beer</button>
             <button onClick={() => selectRandomNonAlcoholicBeer()}>
               Random non alcoholic beer
             </button>
-            <button onClick={() => selectRandomBeer()}>Another Beer</button>
           </span>
         </div>
       )}
       <SearchForm beers={beers} />
-      {/* {filteredBeers.length === 0 && <div>No items</div>} */}
     </div>
   );
 };
