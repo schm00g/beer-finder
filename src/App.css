@@ -7,7 +7,7 @@
 }
 
 .Content {
-  width: 55%;
+  width: 60%;
   margin: auto;
 }
 
@@ -47,9 +47,10 @@
 .Truncate {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   margin-top: 0;
+  padding-right: 3%;
 }
 
 button {
