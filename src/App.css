@@ -1,7 +1,6 @@
 .App {
   min-height: 100vh;
   padding-top: 10%;
-  font-size: calc(10px + 0.5vmin);
   color: rgb(0, 0, 0);
 }
 
@@ -48,7 +47,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  max-height: 3.8rem;
+  max-height: 3.6rem;
   overflow: hidden;
   padding-right: 2%;
 }
