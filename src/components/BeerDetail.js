@@ -73,8 +73,13 @@ const BeerDetail = () => {
           ></img>
           <span className="Description">{displayedBeer.description}</span>
           <span>
-            <button onClick={() => selectRandomBeer()}>Another Beer</button>
-            <button onClick={() => selectRandomNonAlcoholicBeer()}>
+            <button data-cy="another-beer" onClick={() => selectRandomBeer()}>
+              Another Beer
+            </button>
+            <button
+              data-cy="random-non-alcoholic-beer"
+              onClick={() => selectRandomNonAlcoholicBeer()}
+            >
               Random non alcoholic beer
             </button>
           </span>

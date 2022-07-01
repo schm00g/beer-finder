@@ -54,6 +54,7 @@ function SearchForm({ beers }) {
           <input
             id="search"
             type="text"
+            data-cy="search-input"
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -76,13 +77,16 @@ function SearchForm({ beers }) {
           <input
             type="radio"
             value="brewed_before"
+            data-cy="search-type-brewed-before"
             name="search_type"
             checked={searchType === "brewed_before"}
             onChange={handleChange}
           />
           brewed before (MM-YYYY)
         </label>
-        <button type="submit">Search</button>
+        <button data-cy="search-button" type="submit">
+          Search
+        </button>
       </form>
       {!inputValid && (
         <div className="Validation">
