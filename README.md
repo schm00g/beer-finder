@@ -15,10 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 Open the cypress app to view end-to-end tests.
 
-### `npm run test`
-
-Runs the jest test suites.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.
