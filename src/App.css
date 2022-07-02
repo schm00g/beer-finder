@@ -80,3 +80,21 @@ h2 {
   padding-top: 1%;
   margin-bottom: 0;
 }
+@media only screen and (max-width: 600px) {
+  .Content {
+    width: 90%;
+    margin: auto;
+  }
+  .Card {
+    display: inline-block;
+    padding: 5%;
+  }
+  .Image {
+    padding: 0 40%;
+    width: 15%;
+    height: auto;
+  }
+  .Card > span > button {
+    width: 100%;
+  }
+}
