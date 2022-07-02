@@ -4,14 +4,17 @@ const headers = { "Content-Type": "application/json" };
 const MAX_ABV_FOR_NON_ALCOHOLIC_BEER = 1;
 
 const getAllBeers = () => {
-  // TODO: pagination
+  // TODO: pagination -> there are four pages
   return axios.get(`${API_URL}?per_page=80`, { headers });
 };
 
 const getAllNonAlcoholicBeers = () => {
-  return axios.get(`${API_URL}?abv_lt=${MAX_ABV_FOR_NON_ALCOHOLIC_BEER}`, {
-    headers,
-  });
+  return axios.get(
+    `${API_URL}?per_page=80&abv_lt=${MAX_ABV_FOR_NON_ALCOHOLIC_BEER}`,
+    {
+      headers,
+    }
+  );
 };
 
 const getRandomBeer = () => {
@@ -20,7 +23,7 @@ const getRandomBeer = () => {
 };
 
 const getAllBeersBrewedBeforeDate = (date) => {
-  return axios.get(`${API_URL}?brewed_before=${date}`, { headers });
+  return axios.get(`${API_URL}?per_page=80&brewed_before=${date}`, { headers });
 };
 
 export {
