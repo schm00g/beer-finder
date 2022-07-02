@@ -41,7 +41,11 @@ Cypress test suite [cypress/e2e/spec.cy.js](cypress/e2e/spec.cy.js)
 
 Next steps would be to deal with pagination for search results returning more than 80 beers.
 
-Implement rate limiting strategy for 3600 requests per hour using axios interceptors. One possible solution could be limiting to 1 req/sec in [src/services/http/index.js](src/services/http/index.js):
+Improvements to UI/UX - skeleton for loading states for smoother transitions, better search feedback: "No results found for '...'"
+
+Aside from e2e test suite add unit tests with jest.
+
+Implement rate limiting strategy (3600 requests per hour per IP address) using axios interceptors. One possible solution could be limiting to 1 req/sec in [src/services/http/index.js](src/services/http/index.js):
 
 ```
 function delay(time) {
