@@ -10,7 +10,7 @@ From the project root directory, run:
 
 ### npm install
 
-This will install all the dependencies. My env: Node `v16.14.2`.
+This will install all the dependencies. I'm using Node `v16.14.2`.
 
 ### `npm run start`
 
@@ -41,7 +41,7 @@ Cypress test suite [cypress/e2e/spec.cy.js](cypress/e2e/spec.cy.js)
 
 Next steps would be to deal with pagination for search results returning more than 80 beers.
 
-Implement rate limiting strategy for 3600 requests per hour using axios interceptors. Possible solution to add to [src/services/http/index.js](src/services/http/index.js):
+Implement rate limiting strategy for 3600 requests per hour using axios interceptors. One possible solution could be limiting to 1 req/sec in [src/services/http/index.js](src/services/http/index.js):
 
 ```
 function delay(time) {
