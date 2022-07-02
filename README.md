@@ -4,11 +4,13 @@ Interact with PunkAPI.
 
 [Demo](https://beer-finder-iota.vercel.app/)
 
-my env: Node `v16.14.2`.
-
 ## Scripts
 
 From the project root directory, run:
+
+### npm install
+
+This will install all the dependencies. My env: Node `v16.14.2`.
 
 ### `npm run start`
 
