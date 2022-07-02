@@ -13,7 +13,6 @@ const BeerDetail = () => {
   async function selectRandomBeer() {
     try {
       const { data } = await getRandomBeer();
-      // TODO: index 0 avoidable and recursive call here?
       if (
         data[0].image_url === null ||
         data[0].description === null ||

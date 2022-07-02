@@ -70,7 +70,7 @@ function SearchForm() {
                 setSearchQuery(e.target.value);
                 validateFieldInput(e.target.value);
               }}
-              placeholder="search beers"
+              placeholder="Search beers"
             />
           )}
           {searchType === "brewed_before" && (
@@ -109,7 +109,7 @@ function SearchForm() {
           by brewed before date
         </label>
         <button
-          disabled={searchQuery.length === 0}
+          disabled={searchQuery.length === 0 || !inputValid}
           data-cy="search-button"
           type="submit"
         >
