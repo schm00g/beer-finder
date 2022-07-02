@@ -9,6 +9,7 @@ function SearchForm({ beers }) {
   const [filteredBeers, setFilteredBeers] = useState([]);
 
   const handleChange = (e) => {
+    setSearchQuery("");
     setSearchType(e.target.value);
   };
 
@@ -19,14 +20,18 @@ function SearchForm({ beers }) {
         searchBeers(searchQuery);
         break;
       case "brewed_before":
-        searchBeersBrewedBeforeDate(searchQuery);
+        searchBeersBrewedBeforeDate(formatDate(searchQuery));
         break;
     }
   };
 
   const validateFieldInput = (input) => {
-    // TODO: negate a negative regex match...
     setInputValid(!input.match(/[^A-Za-z0-9-\s]/));
+  };
+
+  const formatDate = (date) => {
+    const substrings = date.split("-");
+    return `${substrings[1]}-${substrings[0]}`;
   };
 
   async function searchBeersBrewedBeforeDate(date) {
@@ -51,17 +56,34 @@ function SearchForm({ beers }) {
       <form className="Search" onSubmit={(e) => formSubmit(e)}>
         <label>
           <h2>Search</h2>
-          <input
-            id="search"
-            type="text"
-            data-cy="search-input"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              validateFieldInput(e.target.value);
-            }}
-            placeholder="search"
-          />
+          {searchType === "name" && (
+            <input
+              id="search"
+              type="text"
+              data-cy="search-input"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                validateFieldInput(e.target.value);
+              }}
+              placeholder="search"
+            />
+          )}
+          {searchType === "brewed_before" && (
+            <label htmlFor="brewed_before">
+              <input
+                type="date"
+                id="brewed_before"
+                name="brewed_before"
+                data-cy="date-picker"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  formatDate(e.target.value);
+                }}
+              />
+            </label>
+          )}
         </label>
         <label>
           <input
@@ -82,7 +104,7 @@ function SearchForm({ beers }) {
             checked={searchType === "brewed_before"}
             onChange={handleChange}
           />
-          brewed before (MM-YYYY)
+          by brewed before date
         </label>
         <button data-cy="search-button" type="submit">
           Search

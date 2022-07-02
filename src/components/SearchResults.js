@@ -2,7 +2,7 @@ import React from "react";
 
 function SearchResults({ filteredBeers }) {
   return (
-    <div>
+    <div data-cy="search-results">
       {filteredBeers.length > 0 && <h2>Search Results</h2>}
       {filteredBeers.map(
         ({ id, name, description, image_url, first_brewed }) => (

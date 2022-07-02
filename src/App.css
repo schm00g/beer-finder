@@ -52,6 +52,10 @@
   padding-right: 2%;
 }
 
+#search {
+  width: 115px;
+}
+
 button {
   background-color: #5550c8;
   color: white;

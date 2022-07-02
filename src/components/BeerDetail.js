@@ -31,7 +31,11 @@ const BeerDetail = () => {
     try {
       const { data } = await getRandomBeer();
       // TODO: index 0 avoidable and recursive call here?
-      if (data[0].image_url === null || data[0].description === null) {
+      if (
+        data[0].image_url === null ||
+        data[0].description === null ||
+        data[0].name.toLowerCase().includes("no label")
+      ) {
         selectRandomBeer();
       }
       setDisplayedBeer(data[0]);
@@ -95,9 +99,5 @@ const BeerDetail = () => {
     </div>
   );
 };
-
-// TODO: https://www.pluralsight.com/guides/optimizing-data-fetching-in-react
-
-// TODO: https://www.everydayreact.com/articles/solid-principles-in-react
 
 export default BeerDetail;

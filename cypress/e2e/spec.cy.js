@@ -1,41 +1,46 @@
-describe("beer finder e2e tests", () => {
-  it("should visit", () => {
-    cy.visit("/");
-  });
+beforeEach(() => {
+  cy.visit("/");
+});
 
-  it("user should see random beer", () => {
-    cy.visit("/");
+describe("beer finder most common user pathways", () => {
+  it("should display random beer", () => {
     cy.get(".Title").should("exist");
     cy.get(".Image").should("exist");
   });
 
-  it("user selects new random beer", () => {
-    cy.visit("/");
+  it("should display new random beer", () => {
     cy.get('[data-cy="another-beer"]').click();
     cy.get(".Title").should("exist");
     cy.get(".Image").should("exist");
   });
 
-  it("user selects new random non-alcoholic beer", () => {
-    cy.visit("/");
+  it("should display new random non-alcoholic beer", () => {
     cy.get('[data-cy="random-non-alcoholic-beer"]').click();
     cy.get(".Title").should("exist");
     cy.get(".Image").should("exist");
   });
 
-  it("user searches for a specific beer by text", () => {
-    cy.visit("/");
+  it("allow user to search for a specific beer by text", () => {
     cy.get('[data-cy="search-input"]').type("b");
     cy.get('[data-cy="search-button"]').click();
     cy.contains("Search Results").should("exist");
+    cy.get('[data-cy="search-results"]').its("length").should("be.gte", 1);
   });
 
-  it("user searches for a specific beer by brewed before date", () => {
-    cy.visit("/");
+  it("allow user to search for a specific beer by brewed before date", () => {
     cy.get('[data-cy="search-type-brewed-before"]').click();
-    cy.get('[data-cy="search-input"]').type("10-2009");
+    cy.get('[data-cy="date-picker"]').click().type("2009-02-02");
     cy.get('[data-cy="search-button"]').click();
+    cy.get('[data-cy="search-results"]').its("length").should("be.gte", 1);
     cy.contains("Search Results").should("exist");
     cy.contains("First brewed").should("exist");
+  });
+
+  it("XHR request for random beer should return HTTP status 200", () => {
+    cy.request("https://api.punkapi.com/v2/beers/random").should((response) => {
+      expect(response.status).to.eq(200);
+      expect(response).to.have.property("headers");
+      expect(response).to.have.property("duration");
+    });
   });
 });
