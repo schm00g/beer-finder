@@ -12,12 +12,9 @@ const getBeersByName = (name) => {
 };
 
 const getAllNonAlcoholicBeers = () => {
-  return axios.get(
-    `${API_URL}?per_page=80&abv_lt=${MAX_ABV_FOR_NON_ALCOHOLIC_BEER}`,
-    {
-      headers,
-    }
-  );
+  return axios.get(`${API_URL}?abv_lt=${MAX_ABV_FOR_NON_ALCOHOLIC_BEER}`, {
+    headers,
+  });
 };
 
 const getAllBeersBrewedBeforeDate = (date) => {
