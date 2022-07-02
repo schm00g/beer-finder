@@ -10,14 +10,10 @@ const BeerDetail = () => {
     selectRandomBeer();
   }, []);
 
-  async function selectRandomBeer() {
+  const selectRandomBeer = async () => {
     try {
       const { data } = await getRandomBeer();
-      if (
-        data[0].image_url === null ||
-        data[0].description === null ||
-        data[0].name.toLowerCase().includes("no label")
-      ) {
+      if (data[0].image_url === null || data[0].description === null) {
         selectRandomBeer();
       }
       setDisplayedBeer(data[0]);
@@ -26,9 +22,9 @@ const BeerDetail = () => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  async function selectRandomNonAlcoholicBeer() {
+  const selectRandomNonAlcoholicBeer = async () => {
     try {
       const { data } = await getAllNonAlcoholicBeers();
       const randomIndex = Math.floor(Math.random() * data.length);
@@ -38,7 +34,7 @@ const BeerDetail = () => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div>

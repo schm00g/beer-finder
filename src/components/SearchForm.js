@@ -20,10 +20,10 @@ function SearchForm() {
     e.preventDefault();
     switch (searchType) {
       case "name":
-        searchBeers(searchQuery);
+        searchBeersByName(searchQuery);
         break;
       case "brewed_before":
-        searchBeersBrewedBeforeDate(formatDate(searchQuery));
+        searchBeersByBrewedBeforeDate(formatDate(searchQuery));
         break;
     }
   };
@@ -37,23 +37,23 @@ function SearchForm() {
     return `${substrings[1]}-${substrings[0]}`;
   };
 
-  async function searchBeersBrewedBeforeDate(date) {
+  const searchBeersByBrewedBeforeDate = async (date) => {
     try {
       const { data } = await getAllBeersBrewedBeforeDate(date);
       setSearchResults(data);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-  async function searchBeers(query) {
+  const searchBeersByName = async (name) => {
     try {
-      const { data } = await getBeersByName(query);
+      const { data } = await getBeersByName(name);
       setSearchResults(data);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <div>
