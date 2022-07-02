@@ -29,7 +29,11 @@ For code consistency and static analysis eslint & prettier are used.
 
 Cypress.io e2e tests are provided to cover the most common user journeys.
 
-The main component is `src/components/BeerDetail.js` which calls the data and displays random beer. The user can search data `src/components/SearchForm.js` and see results displayed with `src/components/SearchResults.js`.
+The main component is [src/components/BeerDetail.js](src/components/BeerDetail.js) which calls for the data when mounted and displays random beer. The user can search data [src/components/SearchForm.js](src/components/SearchForm.js) and see results displayed with [src/components/SearchResults.js](src/components/SearchResults.js).
+
+Axios HTTP requests are found [src/services/http/index.js](src/services/http/index.js).
+
+Cypress test suite [cypress/e2e/spec.cy.js](cypress/e2e/spec.cy.js)
 
 ## Todo
 
