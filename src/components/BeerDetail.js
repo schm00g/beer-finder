@@ -44,6 +44,7 @@ const BeerDetail = () => {
           <img
             className="Image"
             src={displayedBeer.image_url}
+            alt="Beer bottle with label"
             width="50"
             height="150"
           ></img>
