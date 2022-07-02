@@ -1,10 +1,12 @@
 import React from "react";
 
-function SearchResults({ filteredBeers }) {
+function SearchResults({ searchResults }) {
   return (
     <div data-cy="search-results">
-      {filteredBeers.length > 0 && <h2>Search Results</h2>}
-      {filteredBeers.map(
+      {searchResults.length > 0 && (
+        <h2>Search Results {`(${searchResults.length})`}</h2>
+      )}
+      {searchResults.map(
         ({ id, name, description, image_url, first_brewed }) => (
           <div key={id} className="Card">
             <h4 className="Title">{name}</h4>

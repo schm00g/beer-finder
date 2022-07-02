@@ -3,9 +3,8 @@ const API_URL = "https://api.punkapi.com/v2/beers";
 const headers = { "Content-Type": "application/json" };
 const MAX_ABV_FOR_NON_ALCOHOLIC_BEER = 1;
 
-const getAllBeers = () => {
-  // TODO: pagination -> there are four pages
-  return axios.get(`${API_URL}?per_page=80`, { headers });
+const getBeersByName = (name) => {
+  return axios.get(`${API_URL}?per_page=80&beer_name=${name}`, { headers });
 };
 
 const getAllNonAlcoholicBeers = () => {
@@ -27,7 +26,7 @@ const getAllBeersBrewedBeforeDate = (date) => {
 };
 
 export {
-  getAllBeers,
+  getBeersByName,
   getAllNonAlcoholicBeers,
   getAllBeersBrewedBeforeDate,
   getRandomBeer,

@@ -1,31 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {
-  getAllBeers,
-  getAllNonAlcoholicBeers,
-  getRandomBeer,
-} from "../services/http/index";
+import { getAllNonAlcoholicBeers, getRandomBeer } from "../services/http/index";
 import SearchForm from "./SearchForm";
 
 const BeerDetail = () => {
-  const [beers, setBeers] = useState(
-    JSON.parse(localStorage.getItem("beers")) || []
-  );
   const [displayedBeer, setDisplayedBeer] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (beers.length === 0) {
-      getAllBeerData();
-    }
-  }, []);
-
-  useEffect(() => {
     selectRandomBeer();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("beers", JSON.stringify(beers));
-  }, [beers]);
 
   async function selectRandomBeer() {
     try {
@@ -46,23 +29,11 @@ const BeerDetail = () => {
     }
   }
 
-  async function getAllBeerData() {
-    try {
-      const { data } = await getAllBeers();
-      setBeers(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   async function selectRandomNonAlcoholicBeer() {
     try {
-      // TODO: network request every time?
       const { data } = await getAllNonAlcoholicBeers();
-      // TODO: ensure random selection picks a different one each time...
-      setDisplayedBeer(data[Math.floor(Math.random() * data.length)]);
+      const randomIndex = Math.floor(Math.random() * data.length);
+      setDisplayedBeer(data[randomIndex]);
     } catch (error) {
       console.error(error);
     } finally {
@@ -72,7 +43,7 @@ const BeerDetail = () => {
 
   return (
     <div>
-      {!loading && beers.length > 0 && (
+      {!loading && (
         <div className="Card">
           <h4 className="Title">{displayedBeer.name}</h4>
           <img
@@ -95,7 +66,7 @@ const BeerDetail = () => {
           </span>
         </div>
       )}
-      <SearchForm beers={beers} />
+      <SearchForm />
     </div>
   );
 };

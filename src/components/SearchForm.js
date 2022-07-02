@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import SearchResults from "./SearchResults";
-import { getAllBeersBrewedBeforeDate } from "../services/http/index";
+import {
+  getAllBeersBrewedBeforeDate,
+  getBeersByName,
+} from "../services/http/index";
 
-function SearchForm({ beers }) {
+function SearchForm() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchType, setSearchType] = useState("name");
   const [inputValid, setInputValid] = useState(true);
-  const [filteredBeers, setFilteredBeers] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = (e) => {
     setSearchQuery("");
@@ -37,19 +40,20 @@ function SearchForm({ beers }) {
   async function searchBeersBrewedBeforeDate(date) {
     try {
       const { data } = await getAllBeersBrewedBeforeDate(date);
-      setFilteredBeers(data);
+      setSearchResults(data);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const searchBeers = (query) => {
-    setFilteredBeers(
-      beers.filter((beer) =>
-        beer.name.toLowerCase().includes(query.toLowerCase())
-      )
-    );
-  };
+  async function searchBeers(query) {
+    try {
+      const { data } = await getBeersByName(query);
+      setSearchResults(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div>
@@ -66,15 +70,13 @@ function SearchForm({ beers }) {
                 setSearchQuery(e.target.value);
                 validateFieldInput(e.target.value);
               }}
-              placeholder="search"
+              placeholder="search beers"
             />
           )}
           {searchType === "brewed_before" && (
             <label htmlFor="brewed_before">
               <input
                 type="date"
-                id="brewed_before"
-                name="brewed_before"
                 data-cy="date-picker"
                 value={searchQuery}
                 onChange={(e) => {
@@ -106,7 +108,11 @@ function SearchForm({ beers }) {
           />
           by brewed before date
         </label>
-        <button data-cy="search-button" type="submit">
+        <button
+          disabled={searchQuery.length === 0}
+          data-cy="search-button"
+          type="submit"
+        >
           Search
         </button>
       </form>
@@ -115,7 +121,7 @@ function SearchForm({ beers }) {
           only letters, numbers, hyphens and spaces are valid
         </div>
       )}
-      <SearchResults filteredBeers={filteredBeers} />
+      <SearchResults searchResults={searchResults} />
     </div>
   );
 }
