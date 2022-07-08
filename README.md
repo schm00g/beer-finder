@@ -8,7 +8,7 @@ Interact with PunkAPI.
 
 From the project root directory, run:
 
-### npm install
+### `npm install`
 
 This will install all the dependencies. I'm using Node `v16.14.2`.
 
